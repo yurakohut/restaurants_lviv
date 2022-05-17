@@ -3,16 +3,17 @@ import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import GoogleMap from "./screens/GoogleMap";
 import HomeScreen from "./screens/HomeScreen";
 
 const App = () => {
   return (
     <Router>
       <Header />
-      <main className="py-3">
+      <main>
         <Container>
-          {console.log('app')}
           <Route path="/" component={HomeScreen} exact />
+          <Route path="/map" component={GoogleMap} exact />
         </Container>
       </main>
       <Footer />
