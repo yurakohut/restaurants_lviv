@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import GoogleMap from "./screens/GoogleMapScreen";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Container>
           <Route path="/" component={HomeScreen} exact />
           <Route path="/login" component={LoginScreen} exact />
+          <Route path="/register" component={RegisterScreen} exact />
           <Route path="/map" component={GoogleMap} exact />
         </Container>
       </main>
