@@ -5,7 +5,7 @@ import { listProducts } from "../../actions/productActions";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import Product from "../../components/Product";
-import GoogleMap from "../GoogleMap";
+import GoogleMap from "../GoogleMapScreen";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
