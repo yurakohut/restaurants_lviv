@@ -26,4 +26,14 @@ const createMarker = asyncHandler(async (req, res) => {
   res.status(201).json({ placeName, latitude, longitude });
 });
 
-export { createMarker };
+// @desc    Get markers by user
+// @route   GET /api/markers
+// @access  Private
+const getMarkersByUser = asyncHandler(async (req, res) => {
+  const markers = await Marker.find({ user: req.user._id }).select(
+    "placeName latitude longitude"
+  );
+  res.json(markers);
+});
+
+export { createMarker, getMarkersByUser };

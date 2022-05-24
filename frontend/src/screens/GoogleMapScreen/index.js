@@ -4,24 +4,28 @@ import { mapConfigs } from "../../configs/mapConfigs";
 
 import "./style.scss";
 import Loader from "../../components/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { getMarkersByUser } from "../../actions/markerAction";
 
 const mapStyles = {
   width: "100%",
   height: "100%"
 };
 
-const testArr = [
-  { lat: 49.839838, lng: 24.0314559 },
-  { lat: 49.8402369, lng: 24.0311538 }
-];
-
 const MapContainer = props => {
   const [coords, setCoords] = useState(null);
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+
+  const { markerList } = useSelector(state => state.markerListByUser);
 
   useEffect(() => {
     getCurrentLocation();
-  }, [loading]);
+
+    if (!markerList.length) {
+      dispatch(getMarkersByUser());
+    }
+  }, [loading, dispatch]);
 
   const getCurrentLocation = async () => {
     await navigator.geolocation.getCurrentPosition(
@@ -74,6 +78,13 @@ const MapContainer = props => {
               fillColor="#c0d6eb"
               fillOpacity={0.2}
             />
+            {markerList.map(marker => (
+              <Marker
+                key={marker._id}
+                name={marker.placeName}
+                position={{ lat: marker.latitude, lng: marker.longitude }}
+              />
+            ))}
           </Map>
         </div>
       )}

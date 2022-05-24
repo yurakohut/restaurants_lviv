@@ -6,9 +6,12 @@ import {
   userDetailsReducer,
   userLoginReducer,
   userRegisterReducer,
-  userUpdateProfileReducer,
+  userUpdateProfileReducer
 } from "./reducers/userReducers";
-import { markerCreateReducer } from "./reducers/markerReducers";
+import {
+  markerCreateReducer,
+  markerListByUserReducer
+} from "./reducers/markerReducers";
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -16,7 +19,8 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
-  markerCreate: markerCreateReducer
+  markerCreate: markerCreateReducer,
+  markerListByUser: markerListByUserReducer
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
