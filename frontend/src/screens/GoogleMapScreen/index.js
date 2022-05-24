@@ -10,6 +10,11 @@ const mapStyles = {
   height: "100%"
 };
 
+const testArr = [
+  { lat: 49.839838, lng: 24.0314559 },
+  { lat: 49.8402369, lng: 24.0311538 }
+];
+
 const MapContainer = props => {
   const [coords, setCoords] = useState(null);
   const [loading, setLoading] = useState(true);
