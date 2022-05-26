@@ -1,0 +1,18 @@
+.header {
+  position: sticky;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  .menu-icon {
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  .header-navbar {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+}

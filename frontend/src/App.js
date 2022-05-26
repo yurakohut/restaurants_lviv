@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import ProtectedRoute from "./components/ProtectedRoute";
 import CreateMarkerScreen from "./screens/CreateMarkerScreen";
 import GoogleMap from "./screens/GoogleMapScreen";
 import HomeScreen from "./screens/HomeScreen";
@@ -19,9 +20,9 @@ const App = () => {
           <Route path="/" component={HomeScreen} exact />
           <Route path="/login" component={LoginScreen} exact />
           <Route path="/register" component={RegisterScreen} exact />
-          <Route path="/profile" component={ProfileScreen} exact />
-          <Route path="/create-marker" component={CreateMarkerScreen} exact />
-          <Route path="/map" component={GoogleMap} exact />
+          <ProtectedRoute path="/profile" component={ProfileScreen} exact />
+          <ProtectedRoute path="/create-marker" component={CreateMarkerScreen} exact />
+          <ProtectedRoute path="/map" component={GoogleMap} exact />
         </Container>
       </main>
       <Footer />

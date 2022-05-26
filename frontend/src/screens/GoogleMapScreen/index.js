@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Map, GoogleApiWrapper, Circle, Marker } from "google-maps-react";
 import { mapConfigs } from "../../configs/mapConfigs";
 
@@ -7,17 +7,21 @@ import Loader from "../../components/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { getMarkersByUser } from "../../actions/markerAction";
 
-const mapStyles = {
-  width: "100%",
-  height: "100%"
-};
+const containerStyle = {
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0
+}
 
 const MapContainer = props => {
   const [coords, setCoords] = useState(null);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
-  const { markerList } = useSelector(state => state.markerListByUser);
+  const { markerList, loading: markerLoader } = useSelector(
+    state => state.markerListByUser
+  );
 
   useEffect(() => {
     getCurrentLocation();
@@ -25,7 +29,7 @@ const MapContainer = props => {
     if (!markerList.length) {
       dispatch(getMarkersByUser());
     }
-  }, [loading, dispatch]);
+  }, [dispatch, markerList]);
 
   const getCurrentLocation = async () => {
     await navigator.geolocation.getCurrentPosition(
@@ -47,7 +51,7 @@ const MapContainer = props => {
 
   return (
     <>
-      {loading ? (
+      {loading || markerLoader ? (
         <Loader />
       ) : (
         <div className="map-wrapper">
@@ -55,7 +59,7 @@ const MapContainer = props => {
             onReady={setMapConfigs}
             google={props.google}
             zoom={17}
-            style={mapStyles}
+            containerStyle={containerStyle}
             initialCenter={{
               lat: coords.lat,
               lng: coords.lng
@@ -92,6 +96,8 @@ const MapContainer = props => {
   );
 };
 
-export default GoogleApiWrapper({
-  apiKey: process.env.REACT_APP_GOOGLE_MAP_KEY
-})(MapContainer);
+export default memo(
+  GoogleApiWrapper({
+    apiKey: process.env.REACT_APP_GOOGLE_MAP_KEY
+  })(MapContainer)
+);

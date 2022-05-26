@@ -1,4 +1,9 @@
 .map-wrapper {
   display: flex;
   justify-content: center;
+
+  .gmnoprint {
+    top: unset !important;
+    bottom: 20px;
+  }
 }

@@ -25,6 +25,7 @@ export const markerListByUserReducer = (state = { markerList: [] }, action) => {
   switch (action.type) {
     case MARKER_BY_USER_REQUEST:
       return {
+        ...state,
         loading: true
       };
     case MARKER_BY_USER_SUCCESS:
