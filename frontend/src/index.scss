@@ -15,3 +15,11 @@ h2 {
   font-size: 1.4rem;
   padding: 0.5rem 0;
 }
+
+.image-preview {
+  width: 100px;
+  margin: 15px 0;
+  img {
+    width: 100%;
+  }
+}

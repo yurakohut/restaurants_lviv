@@ -12,7 +12,7 @@ const containerStyle = {
   bottom: 0,
   left: 0,
   right: 0
-}
+};
 
 const MapContainer = props => {
   const [coords, setCoords] = useState(null);
