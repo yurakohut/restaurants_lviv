@@ -17,12 +17,14 @@ import { register } from "../../actions/userActions";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
+import ImageUploading from "../../components/ImageUploading";
 
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [userImage, setUserImage] = useState("");
   const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
@@ -43,7 +45,7 @@ const RegisterScreen = ({ location, history }) => {
       setMessage("Passwords do not match");
     } else {
       setMessage("");
-      dispatch(register(name, email, password));
+      dispatch(register(name, email, password, userImage));
     }
   };
 
@@ -92,6 +94,14 @@ const RegisterScreen = ({ location, history }) => {
             value={confirmPassword}
             onChange={e => setConfirmPassword(e.target.value)}
           ></FormControl>
+        </FormGroup>
+
+        <FormGroup className="mt-3">
+          <FormLabel>Image</FormLabel>
+          <ImageUploading setImage={setUserImage} />
+          <div className="image-preview">
+            <img src={userImage} />
+          </div>
         </FormGroup>
 
         <Button type="submit" variant="primary" className="mt-3">

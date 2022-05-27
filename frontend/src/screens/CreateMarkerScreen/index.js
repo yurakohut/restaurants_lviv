@@ -10,13 +10,11 @@ import { usePlacesWidget } from "react-google-autocomplete";
 import { useDispatch, useSelector } from "react-redux";
 import { markerCreate } from "../../actions/markerAction";
 import FormContainer from "../../components/FormContainer";
-import ImageUploading from "../../components/ImageUploading";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 
 const CreateMarkerScreen = () => {
   const dispatch = useDispatch();
-  const [userImage, setUserImage] = useState("");
   const { loading, error } = useSelector(state => state.markerCreate);
 
   const { ref } = usePlacesWidget({
@@ -73,14 +71,6 @@ const CreateMarkerScreen = () => {
             defaultValue={longitude}
             onChange={e => setLongitude(e.target.value)}
           />
-        </FormGroup>
-
-        <FormGroup className="mb-3">
-          <FormLabel>Image</FormLabel>
-          <ImageUploading setImage={setUserImage} />
-          <div className="image-preview">
-            <img src={userImage} />
-          </div>
         </FormGroup>
 
         <Button variant="primary" type="button" onClick={onSubmit}>
